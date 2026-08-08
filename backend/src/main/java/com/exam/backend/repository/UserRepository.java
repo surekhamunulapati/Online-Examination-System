@@ -1,0 +1,12 @@
+package com.exam.backend.repository;
+
+import com.exam.backend.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
+    List<User> findByRole(String role);
+    List<User> findByRoleAndApproved(String role, Boolean approved);
+}
