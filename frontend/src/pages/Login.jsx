@@ -15,11 +15,14 @@ export default function Login({ setUserState }) {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8084/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await response.json();
 
