@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Plus, Award, Calendar, Clock, ClipboardList, Send, FileText } from 'lucide-react';
-
+const API_URL = import.meta.env.VITE_API_URL;
 export default function ExaminerDashboard() {
   const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,10 @@ export default function ExaminerDashboard() {
 
   const fetchExams = async () => {
     try {
-      const response = await fetch(`http://localhost:8084/api/examiner/exams?examinerId=${user.id}`);
+      const response = await fetch(
+        `http://localhost:8084/api/examiner/exams?examinerId=${user.id}`
+      );
+
       if (response.ok) {
         const data = await response.json();
         setExams(data);
